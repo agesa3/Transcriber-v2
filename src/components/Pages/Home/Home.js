@@ -2,6 +2,9 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import Navbar from "../../Navbar";
 import { FaEdit } from 'react-icons/fa';
+import {RiDeleteBin2Line} from 'react-icons/ri'
+import {GrPrint} from 'react-icons/gr'
+import {MdOutlineDownload} from 'react-icons/md'
 
 const Home = () => {
   return (
@@ -35,10 +38,13 @@ const Home = () => {
                     <td style={{color:"green"}}>Successful</td>
                     <td>
                       {/* <button class="btn btn-primary">Edit</button> */}
-                      <FaEdit style={{color:"green"}}/>
-                      <button class="btn btn-danger">Delete</button>
+                      <FaEdit style={{color:"green"}} size={30} />
+                      {/* <button class="btn btn-danger">Delete</button> */}
+                      <RiDeleteBin2Line style={{color:"red"}} size={30} />
+                      <MdOutlineDownload style={{color:"blue"}} size={30} />
+                      <GrPrint style={{color:"black"}} size={30} />
                       {/* print  */}
-                      <button class="btn btn-success">Print</button>
+                      {/* <button class="btn btn-success">Print</button> */}
                     </td>
 
                   </tr>
