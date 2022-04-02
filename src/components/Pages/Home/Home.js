@@ -4,21 +4,54 @@ import Navbar from "../../Navbar";
 
 const Home = () => {
   return (
-    <Section>
-    <Navbar />
-    <div className="grid">
-    <h1 style={{
-          color: '#fff',
-      }}>
-        Welcome to the Home Page!
-      </h1>
-    </div>
-  </Section>
-  )
-}
+    <>
+      <Section>
+        <Navbar />
+        <div className="grid">
+          <div className="container">
+            <h4>Your Recent Records</h4>
 
-export default Home
+            <div class="row">
+              <table
+                id="example"
+                class="table table-striped table-bordered"
+                style={{ width: "100%" }}
+              >
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Title</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>Programming</td>
+                    <td>12-03-2022</td>
+                    <td style={{color:"green"}}>Successful</td>
 
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                  <th>#</th>
+                    <th>Title</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+      </Section>
+    </>
+  );
+};
+
+export default Home;
 
 const Section = styled.section`
   margin-left: 18vw;

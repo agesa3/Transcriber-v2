@@ -3,18 +3,21 @@ import styled from "styled-components";
 import { BiSearch } from "react-icons/bi";
 export default function Navbar() {
   return (
+    <>
     <Nav>
       <div className="title">
         <h4>Hi John Doe,</h4>
-        <h1>
+        <h4>
           Welcome to <span>Trasncriber</span>
-        </h1>
+        </h4>
       </div>
       <div className="search">
         <BiSearch />
         <input type="text" placeholder="Search" />
       </div>
     </Nav>
+    <hr />
+    </>
   );
 }
 const Nav = styled.nav`
@@ -35,7 +38,7 @@ const Nav = styled.nav`
     display: flex;
     align-items: center;
     gap: 1rem;
-    padding: 1rem 8rem 1rem 1rem;
+    padding: 0.5rem 4rem 0.5rem 0.5rem;
     border-radius: 1rem;
     svg {
       color: #fff;
