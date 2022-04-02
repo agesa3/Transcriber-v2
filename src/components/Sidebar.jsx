@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { MdSpaceDashboard } from "react-icons/md";
 import { RiDashboard2Fill } from "react-icons/ri";
-import { FaAddressCard, FaTaxi } from "react-icons/fa";
+import { FaAddressCard, FaTaxi,FaMicrophoneAlt } from "react-icons/fa";
 import { GiTwirlCenter } from "react-icons/gi";
 import { BsFillChatTextFill } from "react-icons/bs";
 import { IoSettings } from "react-icons/io5";
 import { FiLogOut } from "react-icons/fi";
 import { GiHamburgerMenu } from "react-icons/gi";
+import {CgImport} from "react-icons/cg";
 import { VscChromeClose } from "react-icons/vsc";
 import { Link } from "react-router-dom";
 import scrollreveal from "scrollreveal";
@@ -48,7 +49,7 @@ export default function Sidebar() {
       <Section>
         <div className="top">
           <div className="brand">
-            <FaTaxi />
+            <FaMicrophoneAlt />
             <span>Transcriber</span>
           </div>
           <div className="toggle">
@@ -97,7 +98,7 @@ export default function Sidebar() {
                 onClick={() => setCurrentLink(5)}
               >
                 <Link to="/import">
-                  <BsFillChatTextFill />
+                <CgImport />
                   <span>Import File</span>
                 </Link>
               </li>
@@ -186,7 +187,7 @@ export default function Sidebar() {
 const Section = styled.section`
   position: fixed;
   left: 0;
-  background-color: #212121;
+  background-color: #02244B;
   height: 100vh;
   width: 18vw;
   display: flex;
@@ -211,13 +212,12 @@ const Section = styled.section`
       align-items: center;
       gap: 2rem;
       svg {
-        color: #ffc107;
+        color: #fff;
         font-size: 2rem;
       }
       span {
         font-size: 2rem;
-        color: #ffc107;
-        font-family: "Permanent Marker", cursive;
+        color: #fff;
       }
     }
     .links {
@@ -232,7 +232,7 @@ const Section = styled.section`
           padding: 0.6rem 1rem;
           border-radius: 0.6rem;
           &:hover {
-            background-color: #ffc107;
+            background-color: #fff;
             a {
               color: black;
             }
@@ -245,7 +245,7 @@ const Section = styled.section`
           }
         }
         .active {
-          background-color: #ffc107;
+          background-color: #fff;
           a {
             color: black;
           }
