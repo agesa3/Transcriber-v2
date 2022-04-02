@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { MdSpaceDashboard } from "react-icons/md";
 import { RiDashboard2Fill } from "react-icons/ri";
-import { FaAddressCard, FaTaxi,FaMicrophoneAlt } from "react-icons/fa";
-import { GiTwirlCenter } from "react-icons/gi";
-import { BsFillChatTextFill } from "react-icons/bs";
+import { FaAddressCard,FaMicrophoneAlt } from "react-icons/fa";
 import { IoSettings } from "react-icons/io5";
 import { FiLogOut } from "react-icons/fi";
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -12,7 +10,7 @@ import {CgImport} from "react-icons/cg";
 import { VscChromeClose } from "react-icons/vsc";
 import { Link } from "react-router-dom";
 import scrollreveal from "scrollreveal";
-import Home from "./Pages/Home/Home";
+
 export default function Sidebar() {
   const [currentLink, setCurrentLink] = useState(1);
   const [navbarState, setNavbarState] = useState(false);
@@ -152,32 +150,16 @@ export default function Sidebar() {
                 <span>Live Transcribe</span>
               </Link>
             </li>
-            <li
-              className={currentLink === 4 ? "active" : "none"}
-              onClick={() => setCurrentLink(4)}
-            >
-              <Link>
-                <GiTwirlCenter />
-                <span> Learning Center</span>
-              </Link>
-            </li>
-            <li
-              className={currentLink === 5 ? "active" : "none"}
-              onClick={() => setCurrentLink(5)}
-            >
-              <a href="#">
-                <BsFillChatTextFill />
-                <span> FAQs</span>
-              </a>
-            </li>
+
+
             <li
               className={currentLink === 6 ? "active" : "none"}
               onClick={() => setCurrentLink(6)}
             >
-              <a href="#">
+             <Link to="/settings">
                 <IoSettings />
                 <span> Settings</span>
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

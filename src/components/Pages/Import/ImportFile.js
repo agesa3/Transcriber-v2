@@ -1,24 +1,77 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import Navbar from "../../Navbar";
+import "./ImportFile.css";
 
 const ImportFile = () => {
   return (
     <Section>
-    <Navbar />
-    <div className="grid">
-      <h1 style={{
-          color:"black"
-      }}>
-          Import File Page
-      </h1>
-    </div>
-  </Section>
-  )
-}
+      <Navbar />
+      {/* <div classNameName="grid">
+        <div className="container">
+          <div className="row">
+            <div className="offset-md-3 col-md-6">
+              <div className="form-group files">
+                <label>Upload Your File </label>
+                <input
+                  type="file"
+                  className="form-control"
+                  multiple
+                 
+                />
+              </div>
+              <div className="form-group">
+              </div>
+
+              <button
+                type="button"
+                className="btn btn-success btn-block"
+              >
+                Upload
+              </button>
+            </div>
+          </div>
+        </div>
+      </div> */}
+      <div className="file-upload">
+        <button
+          className="file-upload-btn"
+          type="button"
+          onClick={() => {
+            document.getElementById("file-upload-input").click();
+          }}
+        >
+          Import File
+        </button>
+
+        <div className="image-upload-wrap">
+          <input
+            className="file-upload-input"
+            type="file"
+            onChange={(e) => console.log(e.target.files)}
+          />
+          <div className="drag-text">
+            <h3>Drag and drop a file or select an audio file</h3>
+          </div>
+        </div>
+        <div className="file-upload-content">
+          {/* <img className="file-upload-image" src="" alt="your image" /> */}
+          <div className="image-title-wrap">
+            {/* <button
+              type="button"
+              onclick="removeUpload()"
+              className="remove-image"
+            >
+              Remove <span className="image-title">Uploaded File</span>
+            </button> */}
+          </div>
+        </div>
+      </div>
+    </Section>
+  );
+};
 
 export default ImportFile;
-
 
 const Section = styled.section`
   margin-left: 18vw;

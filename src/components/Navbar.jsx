@@ -34,25 +34,25 @@ const Nav = styled.nav`
     }
   }
   .search {
-    background-color: #212121;
+    background-color: #e5e5e5;
     display: flex;
     align-items: center;
-    gap: 1rem;
-    padding: 0.5rem 4rem 0.5rem 0.5rem;
+    gap: 0.5rem;
+ padding: 0.5rem;
     border-radius: 1rem;
     svg {
-      color: #fff;
+      color: #227dfb;
     }
     input {
       background-color: transparent;
       border: none;
-      color: #fff;
+      color: #227dfb;
       letter-spacing: 0.3rem;
       &:focus {
         outline: none;
       }
       &::placeholder {
-        color: #fff;
+        color: #227dfb;
       }
     }
   }
@@ -63,7 +63,7 @@ const Nav = styled.nav`
         span {
           display: block;
 
-          margin: 1rem 0;
+          margin: 0.5rem 0;
           /* letter-spacing: 0; */
         }
       }
