@@ -1,17 +1,65 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import Navbar from "../../Navbar";
+import { FaEdit } from 'react-icons/fa';
+import {RiDeleteBin2Line} from 'react-icons/ri'
+import {GrPrint} from 'react-icons/gr'
+import {MdOutlineDownload} from 'react-icons/md'
 
 const Record = () => {
   return (
     <Section>
     <Navbar />
     <div className="grid">
-   <h1 style={{
-       color:"black",
-   }}>
-       Record Page
-   </h1>
+    <div className="container">
+            <h4>Your Recent Records</h4>
+
+            <div class="row">
+              <table
+                id="example"
+                class="table table-striped table-bordered"
+                style={{ width: "100%" }}
+              >
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Title</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>Programming</td>
+                    <td>12-03-2022</td>
+                    <td style={{color:"green"}}>Successful</td>
+                    <td>
+                      {/* <button class="btn btn-primary">Edit</button> */}
+                      <FaEdit style={{color:"green"}} size={30} />
+                      {/* <button class="btn btn-danger">Delete</button> */}
+                      <RiDeleteBin2Line style={{color:"red"}} size={30} />
+                      <MdOutlineDownload style={{color:"blue"}} size={30} />
+                      <GrPrint style={{color:"black"}} size={30} />
+                      {/* print  */}
+                      {/* <button class="btn btn-success">Print</button> */}
+                    </td>
+
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                  <th>#</th>
+                    <th>Title</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
     </div>
   </Section>
   )
