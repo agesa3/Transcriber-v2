@@ -8,7 +8,7 @@ const ImportFile = () => {
     <Navbar />
     <div className="grid">
       <h1 style={{
-          color:"white"
+          color:"black"
       }}>
           Import File Page
       </h1>

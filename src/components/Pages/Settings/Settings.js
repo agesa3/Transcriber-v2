@@ -9,7 +9,7 @@ const Settings = () => {
       <div className="grid">
         <h1
           style={{
-            color: "#fff",
+            color: "black",
           }}
         >
           Settings Page

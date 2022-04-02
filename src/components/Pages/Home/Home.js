@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import Navbar from "../../Navbar";
+import { FaEdit } from 'react-icons/fa';
 
 const Home = () => {
   return (
@@ -23,6 +24,7 @@ const Home = () => {
                     <th>Title</th>
                     <th>Date</th>
                     <th>Status</th>
+                    <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -31,6 +33,13 @@ const Home = () => {
                     <td>Programming</td>
                     <td>12-03-2022</td>
                     <td style={{color:"green"}}>Successful</td>
+                    <td>
+                      {/* <button class="btn btn-primary">Edit</button> */}
+                      <FaEdit style={{color:"green"}}/>
+                      <button class="btn btn-danger">Delete</button>
+                      {/* print  */}
+                      <button class="btn btn-success">Print</button>
+                    </td>
 
                   </tr>
                 </tbody>
@@ -40,6 +49,7 @@ const Home = () => {
                     <th>Title</th>
                     <th>Date</th>
                     <th>Status</th>
+                    <th>Actions</th>
                   </tr>
                 </tfoot>
               </table>

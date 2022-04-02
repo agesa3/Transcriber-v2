@@ -12,6 +12,7 @@ import {CgImport} from "react-icons/cg";
 import { VscChromeClose } from "react-icons/vsc";
 import { Link } from "react-router-dom";
 import scrollreveal from "scrollreveal";
+import Home from "./Pages/Home/Home";
 export default function Sidebar() {
   const [currentLink, setCurrentLink] = useState(1);
   const [navbarState, setNavbarState] = useState(false);

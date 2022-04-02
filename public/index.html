@@ -47,8 +47,28 @@
     -->
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+    <!-- <script>
+      $(document).ready(function () {
+        $("#example").DataTable({
+          aLengthMenu: [
+            [5, 10, 25, -1],
+            [5, 10, 25, "All"],
+          ],
+          iDisplayLength: 5,
+        });
+      });
+
+      function checkAll(bx) {
+        var cbs = document.getElementsByTagName("input");
+        for (var i = 0; i < cbs.length; i++) {
+          if (cbs[i].type == "checkbox") {
+            cbs[i].checked = bx.checked;
+          }
+        }
+      }
+    </script> -->
   </body>
 </html>

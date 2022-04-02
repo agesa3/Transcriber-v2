@@ -8,7 +8,7 @@ const Record = () => {
     <Navbar />
     <div className="grid">
    <h1 style={{
-       color:"white"
+       color:"black",
    }}>
        Record Page
    </h1>

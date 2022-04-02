@@ -16,11 +16,11 @@ export default function App() {
         <Sidebar />
         {/* <Dashboard /> */}
         <Switch>
-          <Route path="/" component={Home} />
+          <Route path="/home" component={Home} />
           <Route path="/import" component={ImportFile} />
           <Route path="/records" component={Records} />
           <Route path="/live" component={Live} />
-          <Route path="/" component={Settings} />
+          <Route path="/settings" component={Settings} />
           
         </Switch>
       </Div>

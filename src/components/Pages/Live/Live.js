@@ -8,7 +8,7 @@ const Live = () => {
     <Navbar />
     <div className="grid">
      <h1 style={{
-         color:"white"
+         color:"black"
      }}>
 Live Transcribe Page
      </h1>
