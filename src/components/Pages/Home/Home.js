@@ -42,7 +42,7 @@ const Home = () => {
                     <th>#</th>
                     <th>Title</th>
                     <th>Uploader</th>
-                    <th>Status</th>
+                    <th>Data</th>
                     <th>Actions</th>
                   </tr>
                 </thead>
@@ -51,10 +51,10 @@ const Home = () => {
                   {textData.map((data, index) => {
                     return (
                       <tr key={index}>
-                        <td>{index + 1}</td>
-                        <td>{data.title}</td>
-                        <td>{data.uploader}</td>
+                        <td>{data.id}</td>
                         <td>{data.file_title}</td>
+                        <td>{data.uploader}</td>
+                        <td>{data.file}</td>
                         {/* edit and delete */}
                         <td>
                           <div className="btn-group">
@@ -62,6 +62,8 @@ const Home = () => {
                               className="btn btn-primary"
                               onClick={() => {
                                 window.location.href = `/edit/${data.id}`;
+                                // print the file
+
                               }
                               }
                             >
@@ -97,7 +99,7 @@ const Home = () => {
                             </button>
                           </div>
                         </td>
-                        
+
                       </tr>
                     );
                   })}
