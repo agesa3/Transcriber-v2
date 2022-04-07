@@ -1,6 +1,8 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Navbar from "../../Navbar";
+
 
 const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -23,17 +25,17 @@ const Live = () => {
     if (isListening) {
       mic.start();
       mic.onend = () => {
-        console.log("Continue");
+        // console.log('continue..')
         mic.start();
       };
     } else {
       mic.stop();
       mic.onend = () => {
-        console.log("Stooped Mic on Click");
+        // console.log('Stopped Mic on Click')
       };
     }
     mic.onstart = () => {
-      console.log("Mic is oN");
+      // console.log('Mics on')
     };
 
     mic.onresult = (event) => {
@@ -41,7 +43,7 @@ const Live = () => {
         .map((result) => result[0])
         .map((result) => result.transcript)
         .join("");
-      console.log(transcript);
+      // console.log(transcript)
       setNote(transcript);
       mic.onerror = (event) => {
         console.log(event.error);
@@ -50,8 +52,26 @@ const Live = () => {
   };
 
   const handleSaveNote = () => {
-    setSavedNotes({ ...savedNotes, note });
+    const finalNote = setSavedNotes([...savedNotes, note]);
+    console.log(`here is the note ${finalNote}`)
+    // save the data to this endpoint https://evening-harbor-58012.herokuapp.com/api/files
+    axios
+      .post("https://evening-harbor-58012.herokuapp.com/api/files", {
+        file: { file: savedNotes, file_title: "Test Title", uploader: "Agesa" },
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
     setNote("");
+  };
+
+  const saveFinalNote = () => {
+    setSavedNotes([...savedNotes, note]);
+    console.log(`Here is is the final note${savedNotes}`);
   };
 
   return (
@@ -71,9 +91,7 @@ const Live = () => {
                 <button onClick={handleSaveNote} disabled={!note}>
                   Save Note
                 </button>
-                <button
-                  onClick={() => setIsListening(prevSate => !prevSate)}
-                >
+                <button onClick={() => setIsListening((prevSate) => !prevSate)}>
                   Start Note
                 </button>
                 <p>{note}</p>
@@ -81,8 +99,13 @@ const Live = () => {
               <div className="col-6">
                 <h4>Notes</h4>
                 {savedNotes.map((n) => (
+                  // editable paragrapgh
+
                   <p key={n}>{n}</p>
                 ))}
+              </div>
+              <div>
+                <button onClick={saveFinalNote}>Save Notes</button>
               </div>
             </div>
           </div>
