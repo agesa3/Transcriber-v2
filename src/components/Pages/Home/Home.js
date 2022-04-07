@@ -23,6 +23,58 @@ const Home = () => {
       });
   }, []);
 
+  const handleDelete = (id) => {
+    //delete data from the endpoint https://evening-harbor-58012.herokuapp.com/api/files/:id
+    axios
+      .delete(`https://evening-harbor-58012.herokuapp.com/api/files/${id}`)
+      .then((res) => {
+        console.log(res);
+        setTextData(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleEdit = (id) => {
+    //edit data from the endpoint https://evening-harbor-58012.herokuapp.com/api/files/:id
+    axios
+      .put(`https://evening-harbor-58012.herokuapp.com/api/files/${id}`)
+      .then((res) => {
+        console.log(res);
+        setTextData(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handlePrint = (id) => {
+    //print data from the endpoint https://evening-harbor-58012.herokuapp.com/api/files/:id
+    axios
+      .get(`https://evening-harbor-58012.herokuapp.com/api/files/${id}`)
+      .then((res) => {
+        console.log(res);
+        setTextData(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleDownload = (id) => {
+    //download data from the endpoint https://evening-harbor-58012.herokuapp.com/api/files/:id
+    axios
+      .get(`https://evening-harbor-58012.herokuapp.com/api/files/${id}`)
+      .then((res) => {
+        console.log(res);
+        setTextData(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <>
       <Section>
@@ -58,59 +110,42 @@ const Home = () => {
                         {/* edit and delete */}
                         <td>
                           <div className="btn-group">
-                            <button 
+                            <button
                               className="btn btn-primary"
-                              onClick={() => {
-                                window.location.href = `/edit/${data.id}`;
-                                // print the file
-
-                              }
-                              }
+                              onClick={handleEdit(data.id)}
                             >
                               <FaEdit />
                             </button>
                             <button
                               className="btn btn-danger"
-                              onClick={() => {
-                                window.location.href = `/delete/${data.id}`;
-                              }
-                              }
+                              onClick={handleDelete(data.id)}
                             >
                               <RiDeleteBin2Line />
                             </button>
                             <button
                               className="btn btn-success"
-                              onClick={() => {
-                                window.location.href = `/print/${data.id}`;
-                              }
-                              }
+                              onClick={handlePrint(data.id)}
                             >
                               <GrPrint />
                             </button>
                             <button
-
                               className="btn btn-info"
-                              onClick={() => {
-                                window.location.href = `/download/${data.id}`;
-                              }
-                              }
+                              onClick={handleDownload(data.id)}
                             >
                               <MdOutlineDownload />
                             </button>
                           </div>
                         </td>
-
                       </tr>
                     );
                   })}
                 </tbody>
                 <tfoot>
                   <tr>
-                  <th>#</th>
+                    <th>#</th>
                     <th>Title</th>
                     <th>Uploader</th>
                     <th>Status</th>
-                   
                   </tr>
                 </tfoot>
               </table>
