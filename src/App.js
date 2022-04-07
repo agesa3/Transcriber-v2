@@ -10,18 +10,33 @@ import Live from "./components/Pages/Live/Live";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Settings from "./components/Pages/Settings/Settings";
 export default function App() {
+
+  // const [data, setData] = React.useState(null);
+
+  // React.useEffect(() => {
+  //   fetch("/api")
+  //     .then((res) => res.json())
+  //     .then((data) => setData(data.message));
+  // }, []);
+
+
   return (
+    // <div className="App">
+    //   <header className="App-header">
+    //     <p>{!data ? "Loading..." : data}</p>
+    //   </header>
+    // </div>
     <Router>
       <Div>
         <Sidebar />
-        {/* <Dashboard /> */}
+
         <Switch>
           <Route path="/home" component={Home} />
           <Route path="/import" component={ImportFile} />
           <Route path="/records" component={Records} />
           <Route path="/live" component={Live} />
           <Route path="/settings" component={Settings} />
-          
+
         </Switch>
       </Div>
     </Router>

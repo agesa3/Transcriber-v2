@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Navbar from "../../Navbar";
 
-
 const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
 const mic = new SpeechRecognition();
@@ -13,66 +12,67 @@ mic.interimResults = true;
 mic.lang = "en-US";
 
 const Live = () => {
-  const [isListening, setIsListening] = useState(false);
-  const [note, setNote] = useState(null);
-  const [savedNotes, setSavedNotes] = useState([]);
+  const [isListening, setIsListening] = useState(false)
+  const [note, setNote] = useState(null)
+  const [savedNotes, setSavedNotes] = useState([])
 
   useEffect(() => {
-    handleListen();
-  }, [isListening]);
+    handleListen()
+  }, [isListening])
 
   const handleListen = () => {
     if (isListening) {
-      mic.start();
+      mic.start()
       mic.onend = () => {
         // console.log('continue..')
-        mic.start();
-      };
+        mic.start()
+      }
     } else {
-      mic.stop();
+      mic.stop()
       mic.onend = () => {
         // console.log('Stopped Mic on Click')
-      };
+      }
     }
     mic.onstart = () => {
       // console.log('Mics on')
-    };
+    }
 
-    mic.onresult = (event) => {
+    mic.onresult = event => {
       const transcript = Array.from(event.results)
-        .map((result) => result[0])
-        .map((result) => result.transcript)
-        .join("");
+        .map(result => result[0])
+        .map(result => result.transcript)
+        .join('')
       // console.log(transcript)
-      setNote(transcript);
-      mic.onerror = (event) => {
-        console.log(event.error);
-      };
-    };
-  };
+      setNote(transcript)
+      mic.onerror = event => {
+        console.log(event.error)
+      }
+    }
+  }
 
   const handleSaveNote = () => {
-    const finalNote = setSavedNotes([...savedNotes, note]);
-    console.log(`here is the note ${finalNote}`)
-    // save the data to this endpoint https://evening-harbor-58012.herokuapp.com/api/files
-    axios
-      .post("https://evening-harbor-58012.herokuapp.com/api/files", {
-        file: { file: savedNotes, file_title: "Test Title", uploader: "Agesa" },
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-
-    setNote("");
-  };
+    const saveFinalNote = setSavedNotes([...savedNotes, note])
+    console.log(`savedNotes${savedNotes}`);
+    setNote('')
+  }
 
   const saveFinalNote = () => {
-    setSavedNotes([...savedNotes, note]);
-    console.log(`Here is is the final note${savedNotes}`);
-  };
+    setSavedNotes([...savedNotes, note])
+    
+
+    axios.post("https://evening-harbor-58012.herokuapp.com/api/files", {
+      file: {
+        file: `${savedNotes}`,
+        file_title: 'test',
+        uploader: 'peter'
+      }
+    })
+      .then((response) => {
+        console.log(response);
+      });
+
+    setNote('')
+  }
 
   return (
     <>
@@ -88,11 +88,11 @@ const Live = () => {
                 ) : (
                   <span>Not Listening</span>
                 )}
-                <button onClick={handleSaveNote} disabled={!note}>
+                <button onClick={saveFinalNote} disabled={!note}>
                   Save Note
                 </button>
                 <button onClick={() => setIsListening((prevSate) => !prevSate)}>
-                  Start Note
+                  Start/stop Note
                 </button>
                 <p>{note}</p>
               </div>
