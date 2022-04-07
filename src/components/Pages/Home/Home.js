@@ -1,20 +1,36 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Navbar from "../../Navbar";
-import { FaEdit } from 'react-icons/fa';
-import {RiDeleteBin2Line} from 'react-icons/ri'
-import {GrPrint} from 'react-icons/gr'
-import {MdOutlineDownload} from 'react-icons/md'
+import { FaEdit } from "react-icons/fa";
+import { RiDeleteBin2Line } from "react-icons/ri";
+import { GrPrint } from "react-icons/gr";
+import { MdOutlineDownload } from "react-icons/md";
+import axios from "axios";
 
 const Home = () => {
+  const [textData, setTextData] = useState([]);
+
+  useEffect(() => {
+    //get data from the endpoint https://evening-harbor-58012.herokuapp.com/api/files
+    axios
+      .get("https://evening-harbor-58012.herokuapp.com/api/files")
+      .then((res) => {
+        console.log(res.data.data);
+        setTextData(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <>
       <Section>
         <Navbar />
+
         <div className="grid">
           <div className="container">
             <h4>Your Recent Records</h4>
-
             <div class="row">
               <table
                 id="example"
@@ -25,37 +41,74 @@ const Home = () => {
                   <tr>
                     <th>#</th>
                     <th>Title</th>
-                    <th>Date</th>
+                    <th>Uploader</th>
                     <th>Status</th>
                     <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Programming</td>
-                    <td>12-03-2022</td>
-                    <td style={{color:"green"}}>Successful</td>
-                    <td>
-                      {/* <button class="btn btn-primary">Edit</button> */}
-                      <FaEdit style={{color:"green"}} size={30} />
-                      {/* <button class="btn btn-danger">Delete</button> */}
-                      <RiDeleteBin2Line style={{color:"red"}} size={30} />
-                      <MdOutlineDownload style={{color:"blue"}} size={30} />
-                      <GrPrint style={{color:"black"}} size={30} />
-                      {/* print  */}
-                      {/* <button class="btn btn-success">Print</button> */}
-                    </td>
+                  {/* loop through the data and display in a table */}
+                  {textData.map((data, index) => {
+                    return (
+                      <tr key={index}>
+                        <td>{index + 1}</td>
+                        <td>{data.title}</td>
+                        <td>{data.uploader}</td>
+                        <td>{data.file_title}</td>
+                        {/* edit and delete */}
+                        <td>
+                          <div className="btn-group">
+                            <button 
+                              className="btn btn-primary"
+                              onClick={() => {
+                                window.location.href = `/edit/${data.id}`;
+                              }
+                              }
+                            >
+                              <FaEdit />
+                            </button>
+                            <button
+                              className="btn btn-danger"
+                              onClick={() => {
+                                window.location.href = `/delete/${data.id}`;
+                              }
+                              }
+                            >
+                              <RiDeleteBin2Line />
+                            </button>
+                            <button
+                              className="btn btn-success"
+                              onClick={() => {
+                                window.location.href = `/print/${data.id}`;
+                              }
+                              }
+                            >
+                              <GrPrint />
+                            </button>
+                            <button
 
-                  </tr>
+                              className="btn btn-info"
+                              onClick={() => {
+                                window.location.href = `/download/${data.id}`;
+                              }
+                              }
+                            >
+                              <MdOutlineDownload />
+                            </button>
+                          </div>
+                        </td>
+                        
+                      </tr>
+                    );
+                  })}
                 </tbody>
                 <tfoot>
                   <tr>
                   <th>#</th>
                     <th>Title</th>
-                    <th>Date</th>
+                    <th>Uploader</th>
                     <th>Status</th>
-                    <th>Actions</th>
+                   
                   </tr>
                 </tfoot>
               </table>
