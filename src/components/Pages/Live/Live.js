@@ -58,14 +58,13 @@ const Live = () => {
 
   const saveFinalNote = () => {
     setSavedNotes([...savedNotes, note])
-    
-    const count=0
+
 
     axios.post("https://evening-harbor-58012.herokuapp.com/api/files", {
       
       file: {
         file: `${savedNotes}`,
-        file_title: 'Test' + count++,
+        file_title: 'Test',
         uploader: 'Peter'
       }
     })
@@ -90,10 +89,14 @@ const Live = () => {
                 ) : (
                   <span>Not Listening</span>
                 )}
-                <button onClick={saveFinalNote} disabled={!note}>
+                &nbsp;
+                &nbsp;
+                <button onClick={saveFinalNote} disabled={!note} className="btn btn-success">
                   Save Note
                 </button>
-                <button onClick={() => setIsListening((prevSate) => !prevSate)}>
+                &nbsp;
+                &nbsp;
+                <button onClick={() => setIsListening((prevSate) => !prevSate)} className="btn btn-danger">
                   Start/stop Note
                 </button>
                 <p>{note}</p>
@@ -107,7 +110,7 @@ const Live = () => {
                 ))}
               </div>
               <div>
-                <button onClick={saveFinalNote}>Save Notes</button>
+                <button onClick={saveFinalNote} className="btn btn-success">Save Notes</button>
               </div>
             </div>
           </div>
