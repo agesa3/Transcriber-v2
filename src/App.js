@@ -5,7 +5,11 @@ import Home from "./components/Pages/Home/Home";
 import ImportFile from "./components/Pages/Import/ImportFile";
 import Records from "./components/Pages/Records/Records";
 import Live from "./components/Pages/Live/Live";
+
+import Landing from "./components/Pages/Landing/Landing";
+
 import Print from "./components/Pages/Home/Print";
+
 
 //setup react router
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -13,8 +17,13 @@ import Settings from "./components/Pages/Settings/Settings";
 export default function App() {
   return (
     <Router>
+
+
       {/* check if path is /print dont display sidebar else display sidebar */}
       <Switch>
+        <Route exact path="/">
+          <Landing />
+        </Route>
         <Route exact path="/home">
           <Sidebar />
           <Home />
@@ -39,6 +48,7 @@ export default function App() {
           <Settings />
         </Route>
       </Switch>
+
     </Router>
   );
 }
