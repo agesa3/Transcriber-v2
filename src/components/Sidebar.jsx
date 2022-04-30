@@ -114,7 +114,7 @@ export default function Sidebar() {
           </div>
         </div>
         <div className="logout">
-          <Link>
+          <Link to="/">
             <FiLogOut />
             <span className="logout">Logout</span>
           </Link>

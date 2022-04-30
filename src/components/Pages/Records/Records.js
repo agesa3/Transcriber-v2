@@ -14,10 +14,10 @@ const Record = () => {
     <div className="container">
             <h4>Your Recent Records</h4>
 
-            <div class="row">
+            <div className="row">
               <table
                 id="example"
-                class="table table-striped table-bordered"
+                className="table table-striped table-bordered"
                 style={{ width: "100%" }}
               >
                 <thead>

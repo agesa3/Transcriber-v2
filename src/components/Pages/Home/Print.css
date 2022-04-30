@@ -1,0 +1,12 @@
+.headPrint{
+    color: #02244b;
+    font-size: 30px;
+    font-weight: bold;
+}
+.uploadPerson{
+    text-transform: capitalize;
+}
+.textTitle{
+    /* underline */
+    text-decoration: underline;
+}

@@ -6,9 +6,12 @@ import { RiDeleteBin2Line } from "react-icons/ri";
 import { GrPrint } from "react-icons/gr";
 import { MdOutlineDownload } from "react-icons/md";
 import axios from "axios";
+import { useHistory, Link } from "react-router-dom";
 
 const Home = () => {
   const [textData, setTextData] = useState([]);
+  const [Loading, setLoading] = useState(true);
+  let history = useHistory();
 
   useEffect(() => {
     //get data from the endpoint https://evening-harbor-58012.herokuapp.com/api/files
@@ -23,57 +26,44 @@ const Home = () => {
       });
   }, []);
 
-  const handleDelete = (id) => {
-    //delete data from the endpoint https://evening-harbor-58012.herokuapp.com/api/files/:id
-    axios
-      .delete(`https://evening-harbor-58012.herokuapp.com/api/files/${id}`)
-      .then((res) => {
-        console.log(res);
-        setTextData(res.data.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  // const handleEdit = (id) => {
+  //   //edit data from the endpoint https://evening-harbor-58012.herokuapp.com/api/files/:id
+  //   axios
+  //     .put(`https://evening-harbor-58012.herokuapp.com/api/files/${id}`)
+  //     .then((res) => {
+  //       console.log(res);
+  //       setTextData(res.data.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
-  const handleEdit = (id) => {
-    //edit data from the endpoint https://evening-harbor-58012.herokuapp.com/api/files/:id
-    axios
-      .put(`https://evening-harbor-58012.herokuapp.com/api/files/${id}`)
-      .then((res) => {
-        console.log(res);
-        setTextData(res.data.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  // const handlePrint = (id) => {
+  //   //print data from the endpoint https://evening-harbor-58012.herokuapp.com/api/files/:id
+  //   axios
+  //     .get(`https://evening-harbor-58012.herokuapp.com/api/files/${id}`)
+  //     .then((res) => {
+  //       console.log(res);
+  //       setTextData(res.data.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
-  const handlePrint = (id) => {
-    //print data from the endpoint https://evening-harbor-58012.herokuapp.com/api/files/:id
-    axios
-      .get(`https://evening-harbor-58012.herokuapp.com/api/files/${id}`)
-      .then((res) => {
-        console.log(res);
-        setTextData(res.data.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  const handleDownload = (id) => {
-    //download data from the endpoint https://evening-harbor-58012.herokuapp.com/api/files/:id
-    axios
-      .get(`https://evening-harbor-58012.herokuapp.com/api/files/${id}`)
-      .then((res) => {
-        console.log(res);
-        setTextData(res.data.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  // const handleDownload = (id) => {
+  //   //download data from the endpoint https://evening-harbor-58012.herokuapp.com/api/files/:id
+  //   axios
+  //     .get(`https://evening-harbor-58012.herokuapp.com/api/files/${id}`)
+  //     .then((res) => {
+  //       console.log(res);
+  //       setTextData(res.data.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
   return (
     <>
@@ -83,10 +73,10 @@ const Home = () => {
         <div className="grid">
           <div className="container">
             <h4>Your Recent Records</h4>
-            <div class="row">
+            <div className="row">
               <table
                 id="example"
-                class="table table-striped table-bordered"
+                className="table table-striped table-bordered"
                 style={{ width: "100%" }}
               >
                 <thead>
@@ -99,47 +89,93 @@ const Home = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {/* loop through the data and display in a table */}
-                  {textData.map((data, index) => {
-                    return (
-                      <tr key={index}>
-                        <td>{data.id}</td>
-                        <td>{data.file_title}</td>
-                        <td>{data.uploader}</td>
-                        <td>{data.file}</td>
-                        {/* edit and delete */}
-                        <td>
-                          <div className="btn-group">
-                            <button
-                              className="btn btn-primary"
-                              onClick={handleEdit(data.id)}
-                            >
-                              <FaEdit />
-                            </button>
-                            <button
-                              className="btn btn-danger"
-                              onClick={handleDelete(data.id)}
-                            >
-                              <RiDeleteBin2Line />
-                            </button>
-                            <button
-                              className="btn btn-success"
-                              onClick={handlePrint(data.id)}
-                            >
-                              <GrPrint />
-                            </button>
-                            <button
-                              className="btn btn-info"
-                              onClick={handleDownload(data.id)}
-                            >
-                              <MdOutlineDownload />
-                            </button>
-                          </div>
-                        </td>
-                      </tr>
-                    );
-                  })}
+                  {/* check if data is there before looping */}
+                  {textData.length > 0 ? (
+                    textData.map((data, index) => {
+                      return (
+                        <tr key={index}>
+                          <td>{data.id}</td>
+                          <td>{data.file_title}</td>
+                          <td>{data.uploader}</td>
+                          <td>{data.file}</td>
+                          {/* edit and delete */}
+                          <td>
+                            <div className="btn-group">
+                              <button
+                                className="btn btn-primary"
+                                // onClick={handleEdit(data.id)}
+                              >
+                                <FaEdit />
+                              </button>
+                              <button
+                                className="btn btn-danger"
+                                onClick={() => {
+                                  axios
+                                    .delete(
+                                      `https://evening-harbor-58012.herokuapp.com/api/files/${data.id}`
+                                    )
+                                    .then((res) => {
+                                      console.log(res);
+                                      window.location.reload();
+                                    })
+                                    .catch((err) => {
+                                      console.log(err);
+                                    });
+                                }}
+                              >
+                                <RiDeleteBin2Line />
+                              </button>
+                              <Link
+                                to={`/print/${data.id}`}
+                                className="btn btn-success"
+                              >
+                                <GrPrint />
+                              </Link>
+                              <button
+                                className="btn btn-info"
+                                onClick={
+                                  // handleDownload(data.id)
+                                  () => {
+                                    const title = data.file_title;
+                                    const file = data.file;
+                                    let dataFile =
+                                      "Name: " + title + "\n" + "File: " + file;
+                                    //convert to Blob
+                                    var blob = new Blob([dataFile], {
+                                      type: "text/plain;charset=utf-8",
+                                    });
+
+                                    //create a link
+                                    var link = document.createElement("a");
+                                    link.download = title;
+                                    if (window.webkitURL != null) {
+                                      //Safari
+                                      link.href =
+                                        window.webkitURL.createObjectURL(blob);
+                                      link.href = URL.createObjectURL(blob);
+                                    } else {
+                                      //other browsers
+                                      link.href =
+                                        window.URL.createObjectURL(blob);
+                                    }
+                                    link.click();
+                                  }
+                                }
+                              >
+                                <MdOutlineDownload />
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                      );
+                    })
+                  ) : (
+                    <tr>
+                      <td colSpan="5">No Data</td>
+                    </tr>
+                  )}
                 </tbody>
+
                 <tfoot>
                   <tr>
                     <th>#</th>
