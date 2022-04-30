@@ -5,6 +5,7 @@ import Home from "./components/Pages/Home/Home";
 import ImportFile from "./components/Pages/Import/ImportFile";
 import Records from "./components/Pages/Records/Records";
 import Live from "./components/Pages/Live/Live";
+import Landing from "./components/Pages/Landing/Landing";
 
 //setup react router
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -28,8 +29,12 @@ export default function App() {
     // </div>
     <Router>
       <Div>
+        <Switch>
+          <Route path="/landing" component={Landing} />
+        </Switch>
+      </Div>
+      <Div>
         <Sidebar />
-
         <Switch>
           <Route path="/home" component={Home} />
           <Route path="/import" component={ImportFile} />
