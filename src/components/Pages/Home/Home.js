@@ -23,57 +23,48 @@ const Home = () => {
       });
   }, []);
 
-  const handleDelete = (id) => {
-    //delete data from the endpoint https://evening-harbor-58012.herokuapp.com/api/files/:id
-    axios
-      .delete(`https://evening-harbor-58012.herokuapp.com/api/files/${id}`)
-      .then((res) => {
-        console.log(res);
-        setTextData(res.data.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const deleteItem = (id) => {
+    alert("i WAS CLicked ", id);
   };
 
-  const handleEdit = (id) => {
-    //edit data from the endpoint https://evening-harbor-58012.herokuapp.com/api/files/:id
-    axios
-      .put(`https://evening-harbor-58012.herokuapp.com/api/files/${id}`)
-      .then((res) => {
-        console.log(res);
-        setTextData(res.data.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  // const handleEdit = (id) => {
+  //   //edit data from the endpoint https://evening-harbor-58012.herokuapp.com/api/files/:id
+  //   axios
+  //     .put(`https://evening-harbor-58012.herokuapp.com/api/files/${id}`)
+  //     .then((res) => {
+  //       console.log(res);
+  //       setTextData(res.data.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
-  const handlePrint = (id) => {
-    //print data from the endpoint https://evening-harbor-58012.herokuapp.com/api/files/:id
-    axios
-      .get(`https://evening-harbor-58012.herokuapp.com/api/files/${id}`)
-      .then((res) => {
-        console.log(res);
-        setTextData(res.data.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  // const handlePrint = (id) => {
+  //   //print data from the endpoint https://evening-harbor-58012.herokuapp.com/api/files/:id
+  //   axios
+  //     .get(`https://evening-harbor-58012.herokuapp.com/api/files/${id}`)
+  //     .then((res) => {
+  //       console.log(res);
+  //       setTextData(res.data.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
-  const handleDownload = (id) => {
-    //download data from the endpoint https://evening-harbor-58012.herokuapp.com/api/files/:id
-    axios
-      .get(`https://evening-harbor-58012.herokuapp.com/api/files/${id}`)
-      .then((res) => {
-        console.log(res);
-        setTextData(res.data.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  // const handleDownload = (id) => {
+  //   //download data from the endpoint https://evening-harbor-58012.herokuapp.com/api/files/:id
+  //   axios
+  //     .get(`https://evening-harbor-58012.herokuapp.com/api/files/${id}`)
+  //     .then((res) => {
+  //       console.log(res);
+  //       setTextData(res.data.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
   return (
     <>
@@ -83,10 +74,10 @@ const Home = () => {
         <div className="grid">
           <div className="container">
             <h4>Your Recent Records</h4>
-            <div class="row">
+            <div className="row">
               <table
                 id="example"
-                class="table table-striped table-bordered"
+                className="table table-striped table-bordered"
                 style={{ width: "100%" }}
               >
                 <thead>
@@ -109,28 +100,45 @@ const Home = () => {
                         <td>{data.file}</td>
                         {/* edit and delete */}
                         <td>
-                          <div className="btn-group">
+                          <div>
                             <button
                               className="btn btn-primary"
-                              onClick={handleEdit(data.id)}
+                              // onClick={handleEdit(data.id)}
                             >
                               <FaEdit />
                             </button>
                             <button
                               className="btn btn-danger"
-                              onClick={handleDelete(data.id)}
+                              onClick={
+                                //  delete data from the endpoint https://evening-harbor-58012.herokuapp.com/api/files/:id
+                                () => {
+                                  axios
+                                    .delete(
+                                      `https://evening-harbor-58012.herokuapp.com/api/files/${data.id}`
+                                    )
+                                    .then((res) => {
+                                      console.log(res);
+                                    //  reload the page
+                                      window.location.reload();
+                                   
+                                    })
+                                    .catch((err) => {
+                                      console.log(err);
+                                    });
+                                }
+                              }
                             >
                               <RiDeleteBin2Line />
                             </button>
                             <button
                               className="btn btn-success"
-                              onClick={handlePrint(data.id)}
+                              // onClick={handlePrint(data.id)}
                             >
                               <GrPrint />
                             </button>
                             <button
                               className="btn btn-info"
-                              onClick={handleDownload(data.id)}
+                              // onClick={handleDownload(data.id)}
                             >
                               <MdOutlineDownload />
                             </button>
