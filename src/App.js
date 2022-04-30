@@ -18,10 +18,10 @@ export default function App() {
   return (
     <Router>
 
-  
+
       {/* check if path is /print dont display sidebar else display sidebar */}
       <Switch>
-      <Route exact path="/landing">
+        <Route exact path="/">
           <Landing />
         </Route>
         <Route exact path="/home">
