@@ -50,11 +50,11 @@ const Live = () => {
     }
   }
 
-  const handleSaveNote = () => {
-    const saveFinalNote = setSavedNotes([...savedNotes, note])
-    console.log(`savedNotes${savedNotes}`);
-    setNote('')
-  }
+  // const handleSaveNote = () => {
+  //   const saveFinalNote = setSavedNotes([...savedNotes, note])
+  //   console.log(`savedNotes${savedNotes}`);
+  //   setNote('')
+  // }
 
   const saveFinalNote = () => {
     setSavedNotes([...savedNotes, note])

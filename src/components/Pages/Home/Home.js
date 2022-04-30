@@ -6,12 +6,11 @@ import { RiDeleteBin2Line } from "react-icons/ri";
 import { GrPrint } from "react-icons/gr";
 import { MdOutlineDownload } from "react-icons/md";
 import axios from "axios";
-import { useHistory, Link } from "react-router-dom";
+import {  Link } from "react-router-dom";
 
 const Home = () => {
   const [textData, setTextData] = useState([]);
-  const [Loading, setLoading] = useState(true);
-  let history = useHistory();
+
 
   useEffect(() => {
     //get data from the endpoint https://evening-harbor-58012.herokuapp.com/api/files
@@ -25,45 +24,6 @@ const Home = () => {
         console.log(err);
       });
   }, []);
-
-  // const handleEdit = (id) => {
-  //   //edit data from the endpoint https://evening-harbor-58012.herokuapp.com/api/files/:id
-  //   axios
-  //     .put(`https://evening-harbor-58012.herokuapp.com/api/files/${id}`)
-  //     .then((res) => {
-  //       console.log(res);
-  //       setTextData(res.data.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
-
-  // const handlePrint = (id) => {
-  //   //print data from the endpoint https://evening-harbor-58012.herokuapp.com/api/files/:id
-  //   axios
-  //     .get(`https://evening-harbor-58012.herokuapp.com/api/files/${id}`)
-  //     .then((res) => {
-  //       console.log(res);
-  //       setTextData(res.data.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
-
-  // const handleDownload = (id) => {
-  //   //download data from the endpoint https://evening-harbor-58012.herokuapp.com/api/files/:id
-  //   axios
-  //     .get(`https://evening-harbor-58012.herokuapp.com/api/files/${id}`)
-  //     .then((res) => {
-  //       console.log(res);
-  //       setTextData(res.data.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
 
   return (
     <>
@@ -152,7 +112,6 @@ const Home = () => {
                                       //Safari
                                       link.href =
                                         window.webkitURL.createObjectURL(blob);
-                                      link.href = URL.createObjectURL(blob);
                                     } else {
                                       //other browsers
                                       link.href =

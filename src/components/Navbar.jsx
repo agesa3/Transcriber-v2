@@ -6,7 +6,7 @@ export default function Navbar() {
     <>
     <Nav>
       <div className="title">
-        <h4>Hi John Doe,</h4>
+        <h4>Hi Peter,</h4>
         <h4>
           Welcome to <span>Trasncriber</span>
         </h4>
