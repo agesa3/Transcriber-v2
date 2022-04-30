@@ -59,12 +59,14 @@ const Live = () => {
   const saveFinalNote = () => {
     setSavedNotes([...savedNotes, note])
     
+    const count=0
 
     axios.post("https://evening-harbor-58012.herokuapp.com/api/files", {
+      
       file: {
         file: `${savedNotes}`,
-        file_title: 'test',
-        uploader: 'peter'
+        file_title: 'Test' + count++,
+        uploader: 'Peter'
       }
     })
       .then((response) => {
