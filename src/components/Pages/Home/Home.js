@@ -142,7 +142,7 @@ const Home = () => {
                                       "Name: " + title + "\n" + "File: " + file;
                                     //convert to Blob
                                     var blob = new Blob([dataFile], {
-                                      type: "text/plain",
+                                      type: "text/plain;charset=utf-8",
                                     });
 
                                     //create a link
@@ -158,7 +158,6 @@ const Home = () => {
                                       link.href =
                                         window.URL.createObjectURL(blob);
                                     }
-
                                     link.click();
                                   }
                                 }
