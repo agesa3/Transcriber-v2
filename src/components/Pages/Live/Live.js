@@ -50,16 +50,21 @@ const Live = () => {
     }
   }
 
-  // const handleSaveNote = () => {
-  //   const saveFinalNote = setSavedNotes([...savedNotes, note])
-  //   console.log(`savedNotes${savedNotes}`);
-  //   setNote('')
-  // }
+  const handlePauseAndResume = () => {
+    setIsListening(prevState => !prevState)
+
+    //when its on resume
+    if (isListening) {
+      setSavedNotes([...savedNotes, note])
+      console.log(savedNotes)
+    }else{
+      mic.stop()
+    }
+
+  }
 
   const saveFinalNote = () => {
     setSavedNotes([...savedNotes, note])
-
-
     axios.post("https://evening-harbor-58012.herokuapp.com/api/files", {
       
       file: {
@@ -91,13 +96,13 @@ const Live = () => {
                 )}
                 &nbsp;
                 &nbsp;
-                <button onClick={saveFinalNote} disabled={!note} className="btn btn-success">
-                  Save Note
+                <button onClick={handlePauseAndResume} disabled={!note} className="btn btn-success">
+                  {isListening ? 'Pause' : 'Resume'}
                 </button>
                 &nbsp;
                 &nbsp;
                 <button onClick={() => setIsListening((prevSate) => !prevSate)} className="btn btn-danger">
-                  Start/stop Note
+                {isListening ? 'Stop' : 'Start'}
                 </button>
                 <p>{note}</p>
               </div>
